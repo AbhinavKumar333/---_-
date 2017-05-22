@@ -14,7 +14,7 @@ void addq(struct queue *q)
     if((q->count) == max){
         printf("queue overflow");
     }
-    else if(q->count == 0){
+    else if((q->count) == 0){
          printf("Enter an element in the queuee");
         scanf("%d",&(q->item));
         q->r = q->f = 0;
@@ -23,7 +23,7 @@ void addq(struct queue *q)
     else if((q->count) > 0){
         printf("Enter an element in the queue");
         scanf("%d",&(q->item));
-        (q->r) = ((q->r + 1)%max);
+        (q->r) = (((q->r) + 1)%max);
         (q->queue[q->r]) = (q->item);(q->count)++;
     }
 }
@@ -41,7 +41,7 @@ int delq(struct queue *q)
     else{
 
     ret = q->queue[q->f];
-    (q->f) = ((q->f + 1)%max);(q->count)--;
+    (q->f) = (((q->f) + 1)%max);(q->count)--;
     }
     return (ret);
 }
@@ -53,19 +53,23 @@ void display(struct queue *q)
         printf("empty");
     }
     else{
-            if(q->r == q->f || (q->r) > (q->f)){
+            if((q->r == q->f) || (q->r) > (q->f)){
         for(i=(q->f);i<=(q->r);i++){
             printf("\n\t|%d|",(q->queue[i]));
-        }
-            }else if(q->r < q->f){
-                for(i=0;i<=(q->r);i++){
-                    printf("\n\t|%d|",(q->queue[i]));}
-                for(i=(q->f);i<max;i++){
-                    printf("\n\t|%d|",(q->queue[i]));}
-                }
+        }}
+            else if((q->r) < (q->f)){
+                for(i=0;i<=(q->r);i++)
+                    {printf("\n\t|%d|",(q->queue[i]));}
 
-                }
-            }
+		if(((q->f)-(q->r))> 1){
+		for(i=(q->r)+1;i<(q->f);i++){printf("\n\t||");}}
+
+                for(i=(q->f);i<max;i++){
+                    {printf("\n\t|%d|",(q->queue[i]));}}
+
+             }
+    }
+}
 
 void main()
 {   struct queue q;q.r=-1;q.f=-1;q.count = 0;
@@ -92,3 +96,4 @@ void main()
 }
 }
 }
+
